@@ -1,8 +1,10 @@
 import React from 'react';
 import {HashRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import 'index.scss';
-import Nav from "./components/Nav";
-import Layout from "./components/Layout";
+import Tags from "./views/Tags";
+import Money from "./views/Money";
+import Statistics from "./views/Statistics";
+import NoMatch from "./views/NoMatch";
 
 
 function App() {
@@ -25,28 +27,6 @@ function App() {
             </Switch>
         </Router>
     );
-}
-
-function Tags() {
-    return (
-        <Layout>tags</Layout>
-    );
-}
-
-function Money() {
-    return (
-        <Layout>money</Layout>
-    );
-}
-
-function Statistics() {
-    return (
-        <Layout>statistics</Layout>
-    );
-}
-
-function NoMatch() {
-    return <div>404</div>;
 }
 
 export default App;

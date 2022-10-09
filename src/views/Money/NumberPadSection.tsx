@@ -95,7 +95,7 @@ const NumberPadSection: React.FC = () => {
                 }
                 break;
             case '删除':
-                console.log('sc');
+
                 break;
             case '清空' :
                 console.log('qk');

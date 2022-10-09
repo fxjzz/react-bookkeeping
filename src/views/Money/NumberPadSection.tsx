@@ -70,7 +70,11 @@ const Wrapper = styled.section`
   }
 `;
 const NumberPadSection: React.FC = () => {
-    const [output, setOutput] = useState('0');
+    const [output, _setOutput] = useState('0');
+    const setOutput =(output:string)=>{
+        if(output.length>=16)return
+        _setOutput(output)
+    }
     const onClick = (e: React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent;
         if (text === null) {
@@ -87,23 +91,29 @@ const NumberPadSection: React.FC = () => {
             case '7':
             case '8':
             case '9':
-            case '.':
                 if (output === '0') {
                     setOutput(text);
                 } else {
                     setOutput(output + text);
                 }
                 break;
+            case '.':
+                if(output.indexOf('.')>=0)return;
+                setOutput(output+'.')
+                break;
             case '删除':
-
+                if (output.length === 1) {
+                    setOutput('0')
+                }else{
+                    setOutput(output.slice(0,-1))
+                }
                 break;
             case '清空' :
-                console.log('qk');
+                setOutput('0')
                 break;
             case 'OK':
                 console.log('ok');
                 break;
-
         }
     };
     return (

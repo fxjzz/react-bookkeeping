@@ -21,7 +21,7 @@ function Money() {
         amount: 0
     });
     const onChange = (obj :Partial<typeof selected>) => {
-        setSelected({...selected,...obj});
+        setSelected({...selected,...obj});/////////////
     }
     return (
         <MyLayout>

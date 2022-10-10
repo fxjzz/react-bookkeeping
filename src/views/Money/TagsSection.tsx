@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React from "react";
+import useTags from "useTags";
 
 const Wrapper = styled.section`
   background: #FFFFFF;
@@ -38,7 +39,7 @@ type Props = {
     onChange:(selected:string[])=> void;
 }
 const TagsSection: React.FC<Props> = (props) => {
-    const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
+    const {tags,setTags}=useTags()
     const selectedTags = props.value;
     const onToggleTag = (tag: string) => {
         const index = selectedTags.indexOf(tag);

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import useTags from "useTags";
+import createId from "../../lib/createId";
 
 const Wrapper = styled.section`
   background: #FFFFFF;
@@ -40,22 +41,22 @@ type Props = {
 }
 const TagsSection: React.FC<Props> = (props) => {
     const {tags,setTags}=useTags()
-    const selectedTags = props.value;
+    const selectedTagIds = props.value;
     const onToggleTag = (tagId: number) => {
-        const index = selectedTags.indexOf(tagId);
+        const index = selectedTagIds.indexOf(tagId);
         if (index >= 0) {
-            props.onChange(selectedTags.filter(t => t !== tagId)); // setSelectedTags!
+            props.onChange(selectedTagIds.filter(t => t !== tagId)); // setSelectedTags!
         } else {
-            props.onChange([...selectedTags, tagId]);
+            props.onChange([...selectedTagIds, tagId]);
         }
     };
     const addTag = () => {
         const tagName = window.prompt('请输入标签内容');
         if (tagName !== null) {
-            setTags([...tags, {id:Math.random(),name:tagName}]);
+            setTags([...tags, {id:createId(),name:tagName}]);
         }
     };
-    const getClass=(tagId:number)=> selectedTags.indexOf(tagId) >= 0 ? 'selected' : ''
+    const getClass=(tagId:number)=> selectedTagIds.indexOf(tagId) >= 0 ? 'selected' : ''
 
     return (
         <Wrapper>

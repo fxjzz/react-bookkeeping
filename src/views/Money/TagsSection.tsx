@@ -35,36 +35,36 @@ const Wrapper = styled.section`
   }
 `;
 type Props = {
-    value : string[],
-    onChange:(selected:string[])=> void;
+    value : number[],
+    onChange:(selected:number[])=> void;
 }
 const TagsSection: React.FC<Props> = (props) => {
     const {tags,setTags}=useTags()
     const selectedTags = props.value;
-    const onToggleTag = (tag: string) => {
-        const index = selectedTags.indexOf(tag);
+    const onToggleTag = (tagId: number) => {
+        const index = selectedTags.indexOf(tagId);
         if (index >= 0) {
-            props.onChange(selectedTags.filter(t => t !== tag)); // setSelectedTags!
+            props.onChange(selectedTags.filter(t => t !== tagId)); // setSelectedTags!
         } else {
-            props.onChange([...selectedTags, tag]);
+            props.onChange([...selectedTags, tagId]);
         }
     };
     const addTag = () => {
         const tagName = window.prompt('请输入标签内容');
         if (tagName !== null) {
-            setTags([...tags, tagName]);
+            setTags([...tags, {id:Math.random(),name:tagName}]);
         }
     };
-    const getClass=(tag:string)=> selectedTags.indexOf(tag) >= 0 ? 'selected' : ''
+    const getClass=(tagId:number)=> selectedTags.indexOf(tagId) >= 0 ? 'selected' : ''
 
     return (
         <Wrapper>
             <ol>
                 {tags.map(tag =>
-                    <li key={tag} onClick={
-                        () => {onToggleTag(tag);}
-                    } className={getClass(tag)}
-                    >{tag}</li>
+                    <li key={tag.id} onClick={
+                        () => {onToggleTag(tag.id);}
+                    } className={getClass(tag.id)}
+                    >{tag.name}</li>
                 )}
             </ol>
             <button onClick={addTag}>新增标签</button>

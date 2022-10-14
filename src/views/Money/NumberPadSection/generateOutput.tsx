@@ -1,4 +1,4 @@
-const generateOutput = (text:string,output:string) => {
+const generateOutput = (text: string, output: string) => {
     switch (text) {
         case '0':
         case '1':
@@ -11,23 +11,27 @@ const generateOutput = (text:string,output:string) => {
         case '8':
         case '9':
             if (output === '0') {
-                return text
+                return text;
             } else {
                 return output + text;
             }
         case '.':
-            if (output.indexOf('.') >= 0) return output;
-            return output + '.';
+            if (output.indexOf('.') >= 0) {
+                return output;
+            } else {
+                console.log(2);
+                return output + '.';
+            }
         case '删除':
             if (output.length === 1) {
                 return '0';
             } else {
-                return output.slice(0, -1)||'';
+                return output.slice(0, -1) || '';
             }
         case '清空' :
             return '0';
         default:
-            return ''
+            return '0';
     }
 };
-export default generateOutput
+export default generateOutput;

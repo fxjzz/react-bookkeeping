@@ -21,7 +21,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
     const onClick = (e: React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent;
         if (text === null) {
-            return;
+            return ;
         }
         setOutput(generateOutput(text, output));
         if (text === 'OK') {

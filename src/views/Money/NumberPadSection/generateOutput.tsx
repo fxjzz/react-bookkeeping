@@ -19,7 +19,6 @@ const generateOutput = (text: string, output: string) => {
             if (output.indexOf('.') >= 0) {
                 return output;
             } else {
-                console.log(2);
                 return output + '.';
             }
         case '删除':

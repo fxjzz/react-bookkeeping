@@ -18,7 +18,7 @@ const useTags = () => {
     }, []); // 组件挂载时执行
     useUpdate(()=>{
         window.localStorage.setItem('tags',JSON.stringify(tags))
-    },[tags])
+    },tags)
     const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
     const updateTag = (id: number,  name: string ) => {
         setTags(tags.map(tag => tag.id === id ? {id, name} : tag));

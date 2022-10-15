@@ -8,9 +8,9 @@ const Wrapper = styled.section`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: flex-start;
-
+  height: 100px;
+  overflow: scroll;
   > ol {
     margin: 0 -12px;
     > li {

@@ -21,12 +21,10 @@ const Wrapper = styled.section`
       width: 25%;
       height: 64px;
       border: none;
-
       &.ok {
         height: 128px;
         float: right;
       }
-
       &.zero {
         width: 50%;
       }

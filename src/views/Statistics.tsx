@@ -57,13 +57,13 @@ function Statistics() {
                                  }}/>
             </CategoryWrapper>
             {arr.map(([date, records]) =>
-                <div>
+                <div key={date}>
                     <Header>
                         {date}
                     </Header>
                     <div>
                         {records.map(r => {
-                            return <Item>
+                            return <Item key={r.createdAt}>
                                 <div className="tags oneLine">
                                     {r.tagIds.map(tagId => <span key={tagId}>{getName(tagId)}</span>)}
                                 </div>

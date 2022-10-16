@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import React, {ChangeEventHandler} from 'react';
 import {Input} from '../../components/Input';
+import Icon from "../../components/Icon";
 
 const Wrapper = styled.section`
   background: #f5f5f5;
   padding: 4px 16px;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  .icon{
+    width: 16px;
+    height: 16px;
+  }
 `;
 type Props = {
     value:string,
@@ -18,6 +25,7 @@ const NoteSection: React.FC<Props> = (props) => {
         };
         return (
             <Wrapper>
+                <Icon name="note"/>
                 <Input label="备注" type="text" value={note} onChange={onChange}
                 placeholder="写点备注吧~~"/>
             </Wrapper>

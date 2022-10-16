@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import React from "react";
 import useTags from "hooks/useTags";
+import {NavLink} from "react-router-dom";
+import Icon from "../../components/Icon";
 
 const Wrapper = styled.section`
   background: #FFFFFF;
-  padding: 12px 16px;
+  padding: 12px 17px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -12,26 +14,37 @@ const Wrapper = styled.section`
   height: 100px;
   overflow: scroll;
   > ol {
-    margin: 0 -12px;
+    .icon {
+      width: 48px;
+      height: 48px;
+    }
+    width: 304px;
+    display: flex;
+    flex-wrap: wrap;
     > li {
-      background: #D9D9D9;
-      border-radius: 18px;
-      display: inline-block;
-      padding: 3px 18px;
-      font-size: 14px;
-      margin: 8px 12px;
-      &.selected {
-        background: pink;
+      width: 76px;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      > span {
+        display: inline-block;
+        text-align: center;
+      }
+      > div {
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        background: rgb(245, 245, 245);
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        align-items: center;
+        &.selected {
+          background: orange;
+        }
+        
       }
     }
-  }
-  > button {
-    background: none;
-    border: none;
-    padding: 2px 4px;
-    border-bottom: 1px solid #333;
-    color: #666;
-    margin-top: 8px;
   }
 `;
 type Props = {
@@ -39,7 +52,7 @@ type Props = {
     onChange:(selected:number[])=> void;
 }
 const TagsSection: React.FC<Props> = (props) => {
-    const {tags,addTag}=useTags()
+    const {tags}=useTags()
     const selectedTagIds = props.value;
     const onToggleTag = (tagId: number) => {
         const index = selectedTagIds.indexOf(tagId);
@@ -54,14 +67,15 @@ const TagsSection: React.FC<Props> = (props) => {
     return (
         <Wrapper>
             <ol>
-                {tags.map(tag =>
-                    <li key={tag.id} onClick={
-                        () => {onToggleTag(tag.id);}
-                    } className={getClass(tag.id)}
-                    >{tag.name}</li>
-                )}
+                {tags.map(tag=><li key={tag.id} onClick={()=>onToggleTag(tag.id)}>
+                    <div className={getClass(tag.id)}><Icon name={tag.name}/></div>
+                    <span>{tag.name}</span>
+                </li>)}
+                <li>
+                    <div><NavLink to="/tags"><Icon name="add"/></NavLink></div>
+                    <span>添加</span>
+                </li>
             </ol>
-            <button onClick={addTag}>新增标签</button>
         </Wrapper>
     );
 };

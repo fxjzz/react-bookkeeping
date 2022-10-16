@@ -10,7 +10,10 @@ const useTags = () => {
             localTags = [
                 {id: createId(), name: '餐饮'},
                 {id: createId(), name: '购物'},
-                {id: createId(), name: '居住'}
+                {id: createId(), name: '居住'},
+                {id: createId(), name: '交通'},
+                {id: createId(), name: '药品'},
+                {id: createId(), name: '娱乐'}
             ];
         }
         setTags(localTags);

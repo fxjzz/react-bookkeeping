@@ -16,7 +16,7 @@ const CategoryWrapper = styled.div`
 `;
 type Category = '-' | '+';
 const defaultFormData = {
-    tagIds: [] as number[],
+    tagId: 1,
     note: '',
     category: '-' as Category,
     amount: 0
@@ -38,14 +38,22 @@ function Money() {
     return (
         <MyLayout>
             <CategoryWrapper>
-                <CategorySection value={selected.category} onChange={category => {onChange({category});}}/>
+                <CategorySection value={selected.category} onChange={category => {
+                    onChange({category});
+                }}/>
             </CategoryWrapper>
-            <TagsSection value={selected.tagIds}
-                         onChange={tagIds => {onChange({tagIds});}}/>
+            <TagsSection value={selected.tagId}
+                         onChange={tagId => {
+                             onChange({tagId});
+                         }}/>
             <NoteSection value={selected.note}
-                         onChange={note => {onChange({note});}}/>
+                         onChange={note => {
+                             onChange({note});
+                         }}/>
             <NumberPadSection value={selected.amount}
-                              onChange={amount => {onChange({amount});}}
+                              onChange={amount => {
+                                  onChange({amount});
+                              }}
                               onOK={submit}/>
         </MyLayout>
     );

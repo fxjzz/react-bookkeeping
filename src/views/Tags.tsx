@@ -3,11 +3,19 @@ import React from "react";
 import useTags from "../hooks/useTags";
 import styled from 'styled-components';
 import Icon from '../components/Icon';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import Button from "../components/Button";
 import Center from "../components/Center";
 import Space from "../components/Space";
-
+const Topbar = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 20px;
+  padding: 14px;
+  background: rgb(255, 218, 71);
+  font-size: 24px;
+`;
 const TagList = styled.ol`
   font-size: 16px;
   background: white;
@@ -26,8 +34,17 @@ const TagList = styled.ol`
 
 function Tags() {
     const {tags,addTag} = useTags();
+    const history = useHistory()
+    const goBack = ()=>{
+        history.goBack()
+    }
     return (
         <Layout>
+            <Topbar>
+                <Icon name="left" onClick={()=>goBack()}/>
+                <span>添加标签</span>
+                <Icon/>
+            </Topbar>
             <TagList>
                 {tags.map(tag =>
                     <li key={tag.id}>

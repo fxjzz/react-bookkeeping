@@ -36,6 +36,7 @@ const useTags = () => {
     };
     const getName = (id:number)=>{
         const tag = tags.filter(t=>t.id===id)[0]
+        console.log(tag);
         return tag?tag.name:''
     }
     return {tags,getName, setTags, findTag, updateTag, deleteTag,addTag};

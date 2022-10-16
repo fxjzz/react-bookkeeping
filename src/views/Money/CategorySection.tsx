@@ -1,14 +1,13 @@
 import styled from "styled-components";
 import React, {useState} from "react";
 
-
 const Wrapper = styled.section`
   font-size: 24px;
-  margin:0px 80px;
-  
+  margin: 0 80px;
+
   > ul {
-    
     display: flex;
+
     > li {
       width: 50%;
       text-align: center;

@@ -42,28 +42,25 @@ const Wrapper = styled.section`
         &.selected {
           background: orange;
         }
-        
       }
     }
   }
 `;
 type Props = {
-    value : number[],
-    onChange:(selected:number[])=> void;
+    value : number,
+    onChange:(selected:number)=> void;
 }
 const TagsSection: React.FC<Props> = (props) => {
     const {tags}=useTags()
-    const selectedTagIds = props.value;
+    const selectedTagId = props.value;
     const onToggleTag = (tagId: number) => {
-        const index = selectedTagIds.indexOf(tagId);
-        if (index >= 0) {
-            props.onChange(selectedTagIds.filter(t => t !== tagId)); // setSelectedTags!
-        } else {
-            props.onChange([...selectedTagIds, tagId]);
-        }
+         if(tagId===selectedTagId){
+             props.onChange(tagId)
+         }else{
+             props.onChange(tagId)
+         }
     };
-    const getClass=(tagId:number)=> selectedTagIds.indexOf(tagId) >= 0 ? 'selected' : ''
-
+    const getClass=(tagId:number)=> selectedTagId ===tagId ? 'selected' : ''
     return (
         <Wrapper>
             <ol>

@@ -7,7 +7,7 @@ const Wrapper = styled.section`
   > .output {
     background: white;
     font-size: 36px;
-    line-height: 72px;
+    line-height: 54px;
     text-align: right;
     padding: 0 16px;
     box-shadow: inset 0 -5px 5px -5px rgba(0, 0, 0, 0.25),
@@ -19,10 +19,10 @@ const Wrapper = styled.section`
       font-size: 18px;
       float: left;
       width: 25%;
-      height: 64px;
+      height: 54px;
       border: none;
       &.ok {
-        height: 128px;
+        height: 108px;
         float: right;
       }
       &.zero {

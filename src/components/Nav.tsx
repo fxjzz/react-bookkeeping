@@ -23,7 +23,7 @@ const NavWrapper = styled.nav`
           height: 24px;
         }
         &.selected{
-          background: pink;
+          background: #faff72;
         }
       }
     }

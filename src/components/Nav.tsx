@@ -35,9 +35,9 @@ const Nav = () => {
         <NavWrapper>
             <ul>
                 <li>
-                    <NavLink to="/tags" activeClassName="selected">
-                        <Icon name="tag"/>
-                        标签
+                    <NavLink to="/statistics" activeClassName="selected">
+                        <Icon name="statistics"/>
+                        明细
                     </NavLink>
                 </li>
                 <li>
@@ -47,9 +47,9 @@ const Nav = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/statistics" activeClassName="selected">
+                    <NavLink to="/tags" activeClassName="selected">
                         <Icon name="chart"/>
-                        统计
+                        图表
                     </NavLink>
                 </li>
             </ul>

@@ -3,7 +3,12 @@ import useTags from "hooks/useTags";
 import {NavLink} from "react-router-dom";
 import Icon from "../../components/Icon";
 import TagsWrapper from "../../components/TagsWrapper";
+import styled from "styled-components";
 
+const Wrapper = styled(TagsWrapper)`
+    height: 100px;
+  overflow: scroll;
+`
 type Props = {
     value : number,
     onChange:(selected:number)=> void;
@@ -20,7 +25,7 @@ const TagsSection: React.FC<Props> = (props) => {
     };
     const getClass=(tagId:number)=> selectedTagId ===tagId ? 'selected' : ''
     return (
-        <TagsWrapper>
+        <Wrapper>
             <ol>
                 {tags.map(tag=><li key={tag.id} onClick={()=>onToggleTag(tag.id)}>
                     <div className={getClass(tag.id)}><Icon name={tag.name}/></div>
@@ -31,7 +36,7 @@ const TagsSection: React.FC<Props> = (props) => {
                     <span>添加</span>
                 </li>
             </ol>
-        </TagsWrapper>
+        </Wrapper>
     );
 };
 

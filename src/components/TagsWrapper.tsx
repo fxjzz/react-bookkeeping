@@ -7,7 +7,6 @@ const TagsWrapper = styled.section`
   display: flex;
   flex-direction: column;
   
-  height: 150px;
   > ol {
     .icon {
       width: 48px;
@@ -17,6 +16,7 @@ const TagsWrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
     > li {
+      margin-top: 10px;
       width: 76px;
       align-items: center;
       display: flex;

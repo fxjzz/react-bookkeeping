@@ -30,10 +30,8 @@ const useTags = () => {
         setTags(tags.filter(tag => tag.id !== id));
     };
     const addTag = (name:string) => {
-        const tagName = name
-        if (tagName !== null && tagName !== '') {
-            setTags([...tags, {id: createId(), name: tagName}]);
-        }
+        setTags([...tags, {id: createId(), name: name}]);
+        return true
     };
     const getName = (id: number) => {
         const tag = tags.filter(t => t.id === id)[0];

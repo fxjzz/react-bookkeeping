@@ -1,66 +1,93 @@
 import Layout from "../components/Layout";
-import React from "react";
-import useTags from "../hooks/useTags";
+import React, {useEffect, useState} from "react";
 import styled from 'styled-components';
 import Icon from '../components/Icon';
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Button from "../components/Button";
-import Center from "../components/Center";
-import Space from "../components/Space";
+import useTags from "../hooks/useTags";
+import TagsWrapper from "../components/TagsWrapper";
+
+
+type TagItem = {
+    name: string
+}
+
 const Topbar = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   line-height: 20px;
-  padding: 14px;
+  padding: 16px;
   background: rgb(255, 218, 71);
   font-size: 24px;
-`;
-const TagList = styled.ol`
-  font-size: 16px;
-  background: white;
-  > li {
-    border-bottom: 1px solid #d5d5d9;
-    line-height: 20px;
-    margin-left: 16px;
-    a{
-      padding: 12px 16px 12px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+
+  > div > .icon {
+    height: 20px;
+    width: 20px;
   }
 `;
+const Current = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  font-size: 20px;
+`;
+const KindName = styled.div`
+  padding: 8px;
+  text-align: center;
+`;
+
+const defaultFoodTags = [
+    {name: '午餐'},
+    {name: '外卖'},
+    {name: '买菜'},
+    {name: '零食'},
+    {name: '小吃'},
+    {name: '酒水'}
+] as TagItem[];
 
 function Tags() {
-    const {tags,addTag} = useTags();
-    const history = useHistory()
-    const goBack = ()=>{
-        history.goBack()
+    const {addTag}=useTags()
+    const [selectedTag,setSelectedTag] =useState('')
+    const [foodTags, setFoodTags] = useState<TagItem[]>([]);
+    useEffect(() => {
+        setFoodTags(defaultFoodTags);
+    }, []);
+    const history = useHistory();
+    const goBack = () => {
+        history.goBack();
+    };
+    const getClass=(name:string)=> selectedTag ===name ? 'selected' : ''
+    const onToggleTag=(name:string)=>{
+        setSelectedTag(name)
+    }
+    const onOK=(selectedTag:string)=>{
+        addTag(selectedTag)
     }
     return (
         <Layout>
             <Topbar>
-                <Icon name="left" onClick={()=>goBack()}/>
-                <span>添加标签</span>
-                <Icon/>
+                <div>
+                    <Icon name="left" onClick={() => goBack()}/>
+                    添加标签
+                </div>
+                <Button onClick={()=>onOK(selectedTag)}>完成</Button>
             </Topbar>
-            <TagList>
-                {tags.map(tag =>
-                    <li key={tag.id}>
-                        <Link to={'/tags/'+tag.id}>
-                            <span className="oneLine">{tag.name}</span>
-                            <Icon name="right"/>
-                        </Link>
-                    </li>
-                )}
-            </TagList>
-            <Center>
-                <Space/>
-                <Space/>
-                <Space/>
-                <Button onClick={addTag}>新增标签</Button>
-            </Center>
+            <Current>
+                <div>选中标签:<Icon name=""/></div>
+                <span>tagName</span>
+            </Current>
+            <hr/>
+            <KindName>餐饮</KindName>
+            <TagsWrapper>
+                <ol>
+                    {foodTags.map(t =>
+                        <li key={t.name} onClick={()=>onToggleTag(t.name)} >
+                            <div className={getClass(t.name)}><Icon name={t.name}/></div>
+                            <span>{t.name}</span>
+                        </li>)}
+                </ol>
+            </TagsWrapper>
         </Layout>
     );
 }

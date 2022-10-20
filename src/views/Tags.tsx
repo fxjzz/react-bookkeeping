@@ -20,6 +20,7 @@ const Topbar = styled.header`
   padding: 16px;
   background: rgb(255, 218, 71);
   font-size: 24px;
+
   > div > .icon {
     height: 20px;
     width: 20px;
@@ -30,15 +31,18 @@ const Current = styled.div`
   justify-content: space-between;
   padding: 10px;
   font-size: 20px;
+
   > div {
     line-height: 35px;
     height: 35px;
+
     > .icon {
       vertical-align: middle;
       width: 35px;
       height: 35px;
     }
-    >div{
+
+    > div {
       display: inline-block;
       line-height: 35px;
     }
@@ -57,18 +61,18 @@ const defaultTags = [
     {name: '电器'},
     {name: '家具'},
     {name: '化妆品'},
-    {name:'电影'},
-    {name:'手机'},
-    {name:'水电费'},
-    {name:'运动'},
-    {name:'Q币'},
-    {name:'游戏'},
-    {name:'其他'}
+    {name: '电影'},
+    {name: '手机'},
+    {name: '水电费'},
+    {name: '运动'},
+    {name: 'Q币'},
+    {name: '游戏'},
+    {name: '其他'}
 ] as TagItem[];
 
 function Tags() {
-    const {addTag}=useTags()
-    const [selectedTag,setSelectedTag] =useState('')
+    const {addTag} = useTags();
+    const [selectedTag, setSelectedTag] = useState('');
     const [defaultTag, setDefaultTag] = useState<TagItem[]>([]);
     useEffect(() => {
         setDefaultTag(defaultTags);
@@ -77,16 +81,24 @@ function Tags() {
     const goBack = () => {
         history.goBack();
     };
-    const getClass=(name:string)=> selectedTag ===name ? 'selected' : ''
-    const onToggleTag=(name:string)=>{
-        setSelectedTag(name)
-    }
-    const onOK=(selectedTag:string)=>{
-        if(addTag(selectedTag)) {
-            alert('添加成功')
-            goBack()
+    const getClass = (name: string) => selectedTag === name ? 'selected' : '';
+    const onToggleTag = (name: string) => {
+        setSelectedTag(name);
+    };
+
+
+
+
+    const onOK = (selectedTag: string) => {
+        const tags: TagItem[] = JSON.parse(window.localStorage.getItem('tags') || '[]');
+        if(tags.filter(t => t.name === selectedTag)[0]){
+            alert('已存在标签')
+        }else {
+            addTag(selectedTag);
+            alert('添加成功');
+            goBack();
         }
-    }
+    };
     return (
         <Layout>
             <Topbar>
@@ -94,7 +106,7 @@ function Tags() {
                     <Icon name="left" onClick={() => goBack()}/>
                     添加标签
                 </div>
-                <Button onClick={()=>onOK(selectedTag)}>
+                <Button onClick={() => onOK(selectedTag)}>
                     完成
                 </Button>
             </Topbar>
@@ -106,7 +118,7 @@ function Tags() {
             <TagsWrapper>
                 <ol>
                     {defaultTag.map(t =>
-                        <li key={t.name} onClick={()=>onToggleTag(t.name)} >
+                        <li key={t.name} onClick={() => onToggleTag(t.name)}>
                             <div className={getClass(t.name)}><Icon name={t.name}/></div>
                             <span>{t.name}</span>
                         </li>)}

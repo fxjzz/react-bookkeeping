@@ -65,7 +65,7 @@ function Statistics() {
                         {records.map(r => {
                             return <Item key={r.createdAt}>
                                 <div className="tags oneLine">
-                                    {<span key={r.tagId}>{getName(r.tagId)}</span>}
+                                    {<span key={r.tagId}>{getName(r.tagId,r.category)}</span>}
                                 </div>
                                 {r.note && <div className="note">
                                     {r.note}

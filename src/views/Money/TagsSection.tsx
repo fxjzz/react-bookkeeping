@@ -1,6 +1,5 @@
 import React from "react";
 import useTags from "hooks/useTags";
-import {NavLink} from "react-router-dom";
 import Icon from "../../components/Icon";
 import TagsWrapper from "../../components/TagsWrapper";
 import styled from "styled-components";
@@ -20,11 +19,7 @@ const TagsSection: React.FC<Props> = (props) => {
     const selectedTagId = props.value;
     const category = props.x;
     let outputTags;
-    if (category === '-') {
-        outputTags = tags;
-    } else {
-        outputTags = incomeTags;
-    }
+    outputTags = category === '-' ? tags : incomeTags;
     const onToggleTag = (tagId: number) => {
         if (tagId === selectedTagId) {
             props.onChange(tagId);

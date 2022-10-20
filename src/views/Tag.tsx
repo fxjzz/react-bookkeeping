@@ -2,7 +2,6 @@ import React from "react";
 import {useParams,useHistory} from "react-router-dom";
 import useTags from "../hooks/useTags";
 import Layout from "../components/Layout";
-import Button from "../components/Button";
 import Icon from "../components/Icon";
 import styled from "styled-components";
 import {Input} from "../components/Input";
@@ -27,7 +26,7 @@ const InputWrapper = styled.div`
 `;
 
 const Tag: React.FC = () => {
-    const {findTag, updateTag, deleteTag} = useTags();
+    const {findTag, updateTag} = useTags();
     let {id: idString} = useParams<Params>();   //params 得到的id 是路由的:id 这是一个string
     const tag = findTag(parseInt(idString));
     const tagContent = (tag:{id:number,name:string}) => (
@@ -43,7 +42,7 @@ const Tag: React.FC = () => {
                     <Space/>
                     <Space/>
                     <Space/>
-                    <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
+
                 </Center>
             </div>
     )

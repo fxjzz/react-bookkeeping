@@ -58,7 +58,7 @@ function Tags() {
     };
 
     const onOK = (selectedTag: string) => {
-        const tags: TagItem[] = JSON.parse(window.localStorage.getItem('tags') || '[]');
+        const tags: TagItem[] = JSON.parse(window.localStorage.getItem('-tags') || '[]');
         if(tags.filter(t => t.name === selectedTag)[0]){
             alert('已存在标签')
         }else {

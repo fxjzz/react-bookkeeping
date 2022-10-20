@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import Icon from "../../components/Icon";
 import TagsWrapper from "../../components/TagsWrapper";
 import styled from "styled-components";
+import AddList from "../../components/AddList";
 
 const Wrapper = styled(TagsWrapper)`
   height: 100px;
@@ -39,10 +40,7 @@ const TagsSection: React.FC<Props> = (props) => {
                     <div className={getClass(tag.id)}><Icon name={tag.name}/></div>
                     <span>{tag.name}</span>
                 </li>)}
-                <li>
-                    <div><NavLink to="/money/tags"><Icon name="add"/></NavLink></div>
-                    <span>添加</span>
-                </li>
+                <AddList value={props.x}/>
             </ol>
         </Wrapper>
     );

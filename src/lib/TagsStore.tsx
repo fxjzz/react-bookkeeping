@@ -1,27 +1,27 @@
-import React, {useEffect, useState} from "react";
-
-type TagItem = {
-    id: number
+export type TagItem = {
     name: string
 }
 
-const defaultIncomeTags = [
-    {id: 6, name: '工资'},
-    {id: 7, name: '兼职'},
-    {id: 8, name: '奖金'},
-    {id: 9, name: '报销'},
-    {id: 10, name: '礼金'}
+const defaultTags = [
+    {name: '午餐'},
+    {name: '外卖'},
+    {name: '买菜'},
+    {name: '零食'},
+    {name: '小吃'},
+    {name: '酒水'},
+    {name: '日用品'},
+    {name: '衣服'},
+    {name: '数码'},
+    {name: '电器'},
+    {name: '家具'},
+    {name: '化妆品'},
+    {name: '电影'},
+    {name: '手机'},
+    {name: '水电费'},
+    {name: '运动'},
+    {name: 'Q币'},
+    {name: '游戏'},
+    {name: '其他'}
 ] as TagItem[];
+export default defaultTags
 
-const TagsStore:React.FC = (props) => {
-    const [tags, setTags] = useState<TagItem[]>();
-    useEffect(() => {
-        setTags(defaultIncomeTags);
-    }, []);
-    return (
-        <div>
-
-        </div>
-    )
-};
-export default TagsStore;

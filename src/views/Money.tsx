@@ -32,7 +32,6 @@ function Money() {
         if (addRecord(selected)) {
             alert('保存成功');
             setSelected(defaultFormData);
-
         }
     };
     return (
@@ -42,7 +41,7 @@ function Money() {
                     onChange({category});
                 }}/>
             </CategoryWrapper>
-            <TagsSection value={selected.tagId}
+            <TagsSection value={selected.tagId} x={selected.category}
                          onChange={tagId => {
                              onChange({tagId});
                          }}/>

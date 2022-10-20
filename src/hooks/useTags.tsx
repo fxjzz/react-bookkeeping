@@ -5,6 +5,7 @@ import {useUpdate} from "./useUpdate";
 
 const useTags = () => {
     const [tags, setTags] = useState<{ id: number, name: string }[]>([]);
+    const [incomeTags,setIncomeTags]=useState<{ id: number, name: string }[]>([]);
     useEffect(() => {
         let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
         if (localTags.length === 0) {
@@ -19,6 +20,17 @@ const useTags = () => {
         }
         setTags(localTags);
     }, []); // 组件挂载时执行
+    useEffect(()=>{
+        let localTags = JSON.parse(window.localStorage.getItem('+tags') || '[]');
+        if (localTags.length === 0) {
+            localTags = [
+                {id: 7, name: '工资'},
+                {id: 8, name: '礼金'},
+                {id: 9, name: '彩礼'}
+            ];
+        }
+        setIncomeTags(localTags);
+    },[])
     useUpdate(() => {
         window.localStorage.setItem('tags', JSON.stringify(tags));
     }, tags);
@@ -38,6 +50,6 @@ const useTags = () => {
         console.log(tag);
         return tag ? tag.name : '';
     };
-    return {tags, getName, setTags, findTag, updateTag, deleteTag, addTag};
+    return {incomeTags,tags, getName, setTags, findTag, updateTag, deleteTag, addTag};
 };
 export default useTags;

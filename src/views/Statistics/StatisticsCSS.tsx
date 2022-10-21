@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
-export const Item = styled.a`
+export const Item = styled(NavLink)`
   display: flex;
   justify-content: space-between;
   background: white;

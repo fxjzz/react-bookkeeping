@@ -7,20 +7,9 @@ import Button from "../components/Button";
 import useTags from "../hooks/useTags";
 import TagsWrapper from "../components/TagsWrapper";
 import defaultTags, {TagItem} from "../lib/TagsStore";
+import {Topbar} from "../components/Topbar";
 
-const Topbar = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  line-height: 20px;
-  padding: 16px;
-  background: rgb(255, 218, 71);
-  font-size: 24px;
-  > div > .icon {
-    height: 20px;
-    width: 20px;
-  }
-`;
+
 const Current = styled.div`
   display: flex;
   justify-content: space-between;

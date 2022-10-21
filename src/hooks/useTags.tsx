@@ -21,14 +21,11 @@ const useTags = () => {
         setTags(localTags);
     }, []); // 组件挂载时执行
     useEffect(()=>{
-        // let localTags = JSON.parse(window.localStorage.getItem('+tags') || '[]');
-        // if (localTags.length === 0) {
             const  localTags = [
                 {id: 100, name: '工资'},
                 {id: 101, name: '礼金'},
                 {id: 102, name: '彩礼'}
             ];
-        // }
         setIncomeTags(localTags);
     },[])
     useUpdate(() => {
@@ -37,7 +34,7 @@ const useTags = () => {
     useUpdate(() => {
         window.localStorage.setItem('-tags', JSON.stringify(tags));
     }, tags);
-    const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
+    const findTag = (id: number) => tags.filter(tag => tag.id === id)[0]||'[]';
     const updateTag = (id: number, name: string) => {
         setTags(tags.map(tag => tag.id === id ? {id, name} : tag));
     };
@@ -54,6 +51,6 @@ const useTags = () => {
             return tag ? tag.name : '';
         }
     };
-    return {incomeTags,tags, getName, setTags, findTag, updateTag,  addTag};
+    return {incomeTags,tags, getName, setTags,findTag, updateTag,  addTag};
 };
 export default useTags;

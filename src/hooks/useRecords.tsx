@@ -31,5 +31,23 @@ export const useRecords = () => {
         setRecords([...records,record])
         return true
     };
-    return {records, addRecord};
+    const findRecord =(id:number)=>{
+        return  records.filter(r=>r.tagId===id)[0]||'[]'
+    }
+    const updateRecordAmount=(id:number,am:string)=>{
+        const a= parseInt(am)
+        const r = records.filter(r=>r.tagId===id)[0]
+        let {amount:number,...rest} =r
+        let amount = a;
+        setRecords(records.map(r=>r.tagId===id?{amount,...rest}:r))
+    }
+    const updateRecordNote=(id:number,note:string)=>{
+        const r = records.filter(r=>r.tagId===id)[0]
+        let {note:string,...rest} =r
+        setRecords(records.map(r=>r.tagId===id?{note,...rest}:r))
+    }
+    const deleteRecord=(id:number)=>{
+        setRecords(records.filter(r=>r.tagId!==id))
+    }
+    return {records, addRecord,findRecord,updateRecordAmount,updateRecordNote,deleteRecord};
 };

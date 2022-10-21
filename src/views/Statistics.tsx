@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import logo from 'bookkeeping.jpg';
 import {Item, Header, DivImg, Img, TotalInfo, Calendar, Amount,} from './Statistics/StatisticsCSS';
 
+
 function Statistics() {
     const {records} = useRecords();
     const {getName} = useTags();
@@ -42,11 +43,11 @@ function Statistics() {
                 </Calendar>
                 <Amount>
                     <div>
-                        <div>收入</div>
+                        <div>支出</div>
                         <span>{income}</span>
                     </div>
                     <div>
-                        <div>支出</div>
+                        <div>收入</div>
                         <span>{expend}</span>
                     </div>
                 </Amount>
@@ -58,7 +59,7 @@ function Statistics() {
                     </Header>
                     <div>
                         {records.map(r => {
-                            return <Item key={r.createdAt}>
+                            return <Item key={r.createdAt} to={"/tags/"+r.tagId}>
                                 <div className="tags oneLine">
                                     {<span key={r.tagId}>{getName(r.tagId, r.category)}</span>}
                                 </div>
